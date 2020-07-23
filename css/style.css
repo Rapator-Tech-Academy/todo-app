@@ -1,0 +1,22 @@
+body {
+    background-color: #9b59b6;
+}
+
+.todo-box {
+    min-height: 80vh;
+    width: 100%;
+    border-radius: 10px;
+    background-color: #fff;
+    padding: 1rem;
+}
+
+.todo-items ul li {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.todo-items ul li button {
+    margin-left: auto;
+}
