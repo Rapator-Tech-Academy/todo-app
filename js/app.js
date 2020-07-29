@@ -40,6 +40,16 @@ $(document).ready(() => {
         }
     }
 
+    $.get('https://programming-quotes-api.herokuapp.com/quotes/random', (data) => {
+        const quoteBox = $('#quotes');
+        let quote = `<p>${data.en}</p>`;
+        let author = `<strong>${data.author}</strong>`;
+        $(quote).appendTo(quoteBox);
+        $(author).appendTo(quoteBox);
+    });
+
+
+
     todoSubmit.on('click', () => {
         let todoObj = {
             'datas': [],
