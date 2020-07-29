@@ -73,6 +73,21 @@ h1 {
     color: #fff;
 }
 
-#quotes {
+#quotes, #learn {
+    color: #fff;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+}
+
+.nav {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-link {
     color: #fff;
 }

@@ -48,6 +48,23 @@ $(document).ready(() => {
         $(author).appendTo(quoteBox);
     });
 
+    const nasa_url = 'https://api.nasa.gov/planetary/apod?api_key=SGYJWovxqCF7tC62cKoFTsDxyf7oqXVlQfLEppv2'
+
+    $.get(nasa_url, (data) => {
+        const quoteBox = $('#learn');
+        let explanation = `<p>${data.explanation}</p>`;
+        let title = `<h3 class="pt-3 pb-3">${data.title}</h3>`;
+        let copyright = `<small>(c) ${data.copyright}</small>`;
+        
+        $(title).appendTo(quoteBox);
+        $(explanation).appendTo(quoteBox);
+        $(copyright).appendTo(quoteBox);
+    });
+
+    //fetch('https://programming-quotes-api.herokuapp.com/quotes/random')
+    //.then(response => response.json())
+    //.then(asfasf => console.log(asfasf));
+
 
 
     todoSubmit.on('click', () => {
@@ -72,6 +89,10 @@ $(document).ready(() => {
 });
 
 
+// Get Background images from api
+
+
+
 // Libraries
 
 const slideshow = new Slideshow({
@@ -81,8 +102,8 @@ const slideshow = new Slideshow({
 });
 
 slideshow.setImages(
-    ['https://source.unsplash.com/1200x700/?people,health',
-    'https://source.unsplash.com/900x900/?people,health',
-    'https://source.unsplash.com/1600x1200/?people,health']
+    ['https://source.unsplash.com/1200x700/?nature',
+    'https://source.unsplash.com/1200x700/?technology',
+    'https://source.unsplash.com/1200x700/?human']
 );
 slideshow.run();
