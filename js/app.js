@@ -34,7 +34,7 @@ $(document).ready(() => {
             let todo = `
             <li>
             <span id="todo-item">${newObj['datas'][task]}</span>
-            <button onclick="makeDone(this)" id="todoDone" class="btn btn-info">DONE</button>
+            <button onclick="makeDone(this)" id="todoDone" class="btn btn-info">X</button>
             </li>`;
             $(todo).appendTo(todoList);
         }
@@ -54,9 +54,25 @@ $(document).ready(() => {
         }
         let todo = `<li>
         <span>${todoInput.val()}</span>
-        <button id="todoDone" onclick="makeDone(this)" class="btn btn-info">DONE</button>
+        <button id="todoDone" onclick="makeDone(this)" class="btn btn-info">X</button>
         </li>`;
         $(todo).appendTo(todoList);
         todoInput.val("");
     });
 });
+
+
+// Libraries
+
+const slideshow = new Slideshow({
+    tickInterval: 5000,
+    transitionTime: 100,
+    backgroundElementId: "body"
+});
+
+slideshow.setImages(
+    ['https://source.unsplash.com/1200x700/?people,health',
+    'https://source.unsplash.com/900x900/?people,health',
+    'https://source.unsplash.com/1600x1200/?people,health']
+);
+slideshow.run();
