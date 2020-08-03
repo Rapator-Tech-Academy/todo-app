@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <p>Click the button to get your coordinates.</p>
+
+    <button onclick="getLocation()">Try It</button>
+
+    <p id="demo"></p>
+
+    <script>
+        var x = document.getElementById("demo");
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showPosition(position) {
+            let map = `
+         <iframe 
+         width="600" 
+         height="370" 
+         frameborder="0" 
+         scrolling="no" 
+         marginheight="0" 
+         marginwidth="0" 
+         src="https://maps.google.com/maps?q=${position.coords.latitude},${position.coords.longitude}&hl=es&z=14&amp;output=embed"
+        >
+        </iframe>
+        <br />
+        <small>
+          <a 
+           href="https://maps.google.com/maps?q='+data.lat+','+data.lon+'&hl=es;z=14&amp;output=embed" 
+           style="color:#0000FF;text-align:left" 
+           target="_blank"
+          >
+            See map bigger
+          </a>
+        </small>
+  `;
+
+            x.innerHTML = map;
+        }
+    </script>
+
+</body>
+
+</html>
