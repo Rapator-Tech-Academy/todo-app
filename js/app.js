@@ -15,8 +15,27 @@ function makeDone(e) {
     localStorage.setItem('todos', JSON.stringify(storedObj));
 
     $(e).parent().find('span').css('text-decoration', 'line-through');
+};
 
-}
+function makeEdit(e) {
+
+    $(e).parent().hide();
+    
+    let localArr = [];
+    let storedObj = JSON.parse(localStorage.getItem('todos'));
+    const data = $(e).parent().find('span').text();
+
+    for (let task in storedObj['datas']) {
+        if (data !== storedObj['datas'][task]) {
+            localArr.push(storedObj['datas'][task]);
+        }
+    }
+    storedObj['datas'] = localArr;
+
+    localStorage.setItem('todos', JSON.stringify(storedObj));
+
+    $('#todoInput').val(data);
+};
 
 // jQuery Functions
 $(document).ready(() => {
@@ -34,6 +53,7 @@ $(document).ready(() => {
             let todo = `
             <li>
             <span id="todo-item">${newObj['datas'][task]}</span>
+            <button id="todoEdit" onclick="makeEdit(this)" class="btn btn-info">EDIT</button>
             <button onclick="makeDone(this)" id="todoDone" class="btn btn-info">X</button>
             </li>`;
             $(todo).appendTo(todoList);
@@ -66,11 +86,12 @@ $(document).ready(() => {
     //.then(asfasf => console.log(asfasf));
 
 
-
     todoSubmit.on('click', () => {
         let todoObj = {
             'datas': [],
         };
+        let storedObj = localStorage.getItem('todos');
+
         if (storedObj) {
             const newObj = JSON.parse(storedObj);
             newObj['datas'].push(todoInput.val());
@@ -81,7 +102,8 @@ $(document).ready(() => {
         }
         let todo = `<li>
         <span>${todoInput.val()}</span>
-        <button id="todoDone" onclick="makeDone(this)" class="btn btn-info">X</button>
+        <button id="todoEdit" onclick="makeEdit(this)" class="btn btn-info">EDIT</button>
+        <button id="todoDone" onclick="makeDone(this)" class="btn btn-danger">X</button>
         </li>`;
         $(todo).appendTo(todoList);
         todoInput.val("");
